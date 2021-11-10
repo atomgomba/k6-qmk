@@ -16,17 +16,17 @@ jobs:
       - name: Install git submodules
         run: cd qmk_firmware && make git-submodule
       - name: Copy custom keymaps
-        run: cp -rp keymaps qmk_firmware/keyboards/keychron/k6/keymaps/ansi-atomgomba
+        run: cp -rp keymaps qmk_firmware/keyboards/keychron/k6/rgb/keymaps/ansi-atomgomba
       - name: Compile firmware
-        run: cd qmk_firmware && make keychron/k6:ansi-atomgomba
+        run: cd qmk_firmware && make keychron/k6/rgb:ansi-atomgomba
       - name: Upload compiled firmware (build artifact)
         uses: actions/upload-artifact@v2
         with:
           name: Keychron K6 QMK Firmware (atomgomba)
-          path: qmk_firmware/keychron_k6_ansi-atomgomba.bin
+          path: qmk_firmware/keychron_k6_rgb_ansi-atomgomba.bin
       - name: Upload compiled firmware (tagged release)
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            qmk_firmware/keychron_k6_ansi-atomgomba.bin
+            qmk_firmware/keychron_k6_rgb_ansi-atomgomba.bin
